@@ -19,10 +19,6 @@ public class TestSetup {
   @Autowired
   protected PublisherRepository publisherRepository;
 
-  protected boolean isNotNull(Object object){
-    return object != null;
-  }
-
   @Before
   public void setUp() throws Exception {
     authorRepository.deleteAll();

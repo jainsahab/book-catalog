@@ -4,6 +4,7 @@ import com.prateekj.models.Publisher;
 import com.prateekj.setup.TestSetup;
 import org.junit.Test;
 
+import static com.prateekj.Utils.TestUtils.isNotNull;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;

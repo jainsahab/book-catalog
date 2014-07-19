@@ -1,0 +1,4 @@
+CREATE TABLE author(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name CHAR (20)
+)

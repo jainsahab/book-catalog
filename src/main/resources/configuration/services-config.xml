@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+  <jpa:repositories base-package="com.prateekj.repositories"/>
+
+  <bean id="configurationEncryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+    <property name="config">
+      <bean class="org.jasypt.encryption.pbe.config.SimpleStringPBEConfig">
+        <property name="algorithm" value="PBEWithMD5AndDES"/>
+        <property name="password" value="password"/>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="propertyConfigurer"
+        class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+    <constructor-arg ref="configurationEncryptor"/>
+    <property name="locations">
+      <list>
+        <value>classpath:properties/persistence.properties</value>
+      </list>
+    </property>
+  </bean>
+
+
+  <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <property name="entityManagerFactory" ref="entityManagerFactory"/>
+  </bean>
+
+  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+    <property name="persistenceUnitName" value="mysql-core"/>
+  </bean>
+
+  <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+    <property name="database" value="MYSQL"/>
+    <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/>
+    <property name="showSql" value="false"/>
+  </bean>
+
+  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+    <property name="driverClass" value="${com.prateekj.jdbc.driver}"/>
+    <property name="jdbcUrl" value="${com.prateekj.jdbc.url}"/>
+    <property name="user" value="${com.prateekj.jdbc.user}"/>
+    <property name="password" value="${com.prateekj.jdbc.password}"/>
+  </bean>
+
+
+</beans>

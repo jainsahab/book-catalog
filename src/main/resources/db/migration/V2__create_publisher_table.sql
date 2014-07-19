@@ -1,0 +1,5 @@
+
+CREATE TABLE publisher(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name CHAR (20)
+)

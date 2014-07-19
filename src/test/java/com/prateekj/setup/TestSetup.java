@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:/configuration/services-config.xml"})
+@ContextConfiguration({"classpath:/configuration/services-config.xml", "classpath:/configuration/mvc-dispatcher-config.xml"})
 @Ignore
 public class TestSetup {
   @Autowired

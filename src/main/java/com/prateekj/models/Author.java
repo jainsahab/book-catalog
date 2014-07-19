@@ -1,5 +1,6 @@
 package com.prateekj.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "author")
+@EqualsAndHashCode
 public class Author {
 
   @Id

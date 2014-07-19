@@ -1,6 +1,7 @@
 package com.prateekj.setup;
 
 import com.prateekj.repositories.AuthorRepository;
+import com.prateekj.repositories.BookRepository;
 import com.prateekj.repositories.PublisherRepository;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -19,8 +20,12 @@ public class TestSetup {
   @Autowired
   protected PublisherRepository publisherRepository;
 
+  @Autowired
+  protected BookRepository bookRepository;
+
   @Before
   public void setUp() throws Exception {
+    bookRepository.deleteAll();
     authorRepository.deleteAll();
     publisherRepository.deleteAll();
   }

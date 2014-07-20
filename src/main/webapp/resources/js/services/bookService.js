@@ -7,9 +7,7 @@ bookCatalogApp.service('bookService', ["$resource", function($resource){
     });
 
     var bookService = {}
-    bookService.submitBook = function(book){
-        var onSuccess = function(){console.log("chal gaya bhai")};
-        var onFailure = function(){console.log("nahi chala bhai")};
+    bookService.submitBook = function(book, onSuccess, onFailure){
         Book.submit(book, onSuccess, onFailure);
     };
 

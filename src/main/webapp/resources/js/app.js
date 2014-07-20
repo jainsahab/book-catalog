@@ -1,0 +1,1 @@
+var bookCatalogApp = angular.module('bookCatalogApp', ['ngResource']);

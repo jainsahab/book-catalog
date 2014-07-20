@@ -1,0 +1,20 @@
+div(ng-controller="AddBookController")
+  table
+    tr
+      td
+        b Title:
+      td
+        input(type="text", ng-model="book.title")
+    tr
+      td
+        b Author:
+      td
+        input(type="text", ng-model="book.author.name")
+    tr
+      td
+        b Publisher:
+      td
+        input(type="text", ng-model="book.publisher.name")
+    tr
+      td
+        input(type="button", ng-click="submitBook()", value="Save")

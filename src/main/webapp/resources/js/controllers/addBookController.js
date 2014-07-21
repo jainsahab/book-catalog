@@ -7,7 +7,9 @@ bookCatalogApp.controller('AddBookController', ["$scope","bookService",
         $scope.book = book;
 
         $scope.submitBook = function(){
-            bookService.submitBook(this.book);
+            var success = function(){console.log("chal gaya re")};
+            var failure = function(){console.log("nahi chala re")};
+            bookService.submitBook(this.book, success, failure);
         }
 
 }]);

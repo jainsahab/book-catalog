@@ -22,7 +22,7 @@ describe("Add Book Controller", function(){
 
             this.scope.submitBook();
 
-            expect(bookService.submitBook).toHaveBeenCalledWith(this.scope.book);
+            expect(bookService.submitBook).toHaveBeenCalledWith(this.scope.book, jasmine.any(Function), jasmine.any(Function));
         });
     });
 });

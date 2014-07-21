@@ -6,7 +6,7 @@ bookCatalogApp.service('bookService', ["$resource", function($resource){
         }
     });
 
-    var bookService = {}
+    var bookService = {};
     bookService.submitBook = function(book, onSuccess, onFailure){
         Book.submit(book, onSuccess, onFailure);
     };

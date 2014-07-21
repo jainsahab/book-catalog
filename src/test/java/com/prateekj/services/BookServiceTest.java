@@ -40,21 +40,6 @@ public class BookServiceTest {
   private BookRepository bookRepository;
 
 
-  @Test
-  public void should_save_the_author_and_publisher_before_book_when_not_pre_saved(){
-    Author unsavedAuthor = make(a(Author));
-    Publisher unsavedPublisher = make(a(Publisher));
-    Book unsavedBook = make(a(Book, with(author, unsavedAuthor), with(publisher, unsavedPublisher)));
-
-    when(authorService.findById(unsavedAuthor.getId())).thenReturn(null);
-    when(publisherService.findPublisherById(unsavedPublisher.getId())).thenReturn(null);
-
-    bookService.addBook(unsavedBook);
-
-    verify(authorService, times(1)).saveAuthor(unsavedAuthor);
-    verify(publisherService, times(1)).savePublisher(unsavedPublisher);
-    verify(bookRepository, times(1)).save(unsavedBook);
-  }
 
   @Test
   public void should_not_save_the_author_and_publisher_before_book_when_are_pre_saved(){

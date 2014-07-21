@@ -2,6 +2,7 @@ package com.prateekj.repositories;
 
 import com.prateekj.models.Publisher;
 import com.prateekj.setup.TestSetup;
+import org.junit.Before;
 import org.junit.Test;
 
 import static com.prateekj.Utils.TestUtils.isNotNull;
@@ -10,6 +11,10 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class PublisherRepositoryTest extends TestSetup{
+  @Before
+  public void setUp() throws Exception {
+    clearContent();
+  }
 
   @Test
   public void shouldAddPublisher(){

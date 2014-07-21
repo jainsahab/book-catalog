@@ -3,7 +3,6 @@ package com.prateekj.setup;
 import com.prateekj.repositories.AuthorRepository;
 import com.prateekj.repositories.BookRepository;
 import com.prateekj.repositories.PublisherRepository;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,7 @@ public class TestSetup {
   @Autowired
   protected BookRepository bookRepository;
 
-  @Before
-  public void setUp() throws Exception {
+  public void clearContent() throws Exception {
     bookRepository.deleteAll();
     authorRepository.deleteAll();
     publisherRepository.deleteAll();

@@ -8,11 +8,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.List;
+
 import static com.natpryce.makeiteasy.MakeItEasy.a;
 import static com.natpryce.makeiteasy.MakeItEasy.make;
 import static com.natpryce.makeiteasy.MakeItEasy.with;
 import static com.prateekj.makers.AuthorMaker.Author;
 import static com.prateekj.makers.AuthorMaker.id;
+import static java.util.Arrays.asList;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.times;
@@ -49,4 +54,16 @@ public class AuthorServiceTest {
     assertThat(foundAuthor, is(savedAuthor));
   }
 
+  @Test
+  public void shouldGetAllTheAuthors(){
+    Author author1 = make(a(Author));
+    Author author2 = make(a(Author));
+
+    when(authorRepository.findAll()).thenReturn(asList(author1, author2));
+
+    List<Author> authors = authorService.getAllAuthors();
+
+    assertThat(authors, hasSize(2));
+    assertThat(authors, hasItems(author1, author2));
+  }
 }

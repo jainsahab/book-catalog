@@ -5,6 +5,7 @@ import com.prateekj.models.Author;
 import com.prateekj.models.Book;
 import com.prateekj.models.Publisher;
 import com.prateekj.setup.TestSetup;
+import org.junit.Before;
 import org.junit.Test;
 
 import static com.natpryce.makeiteasy.MakeItEasy.a;
@@ -20,6 +21,11 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class BookRepositoryTest extends TestSetup{
+  @Before
+  public void setUp() throws Exception {
+    clearContent();
+  }
+
   @Test
   public void shouldAddABook(){
     Author aAuthor = authorRepository.save(make(a(Author, with(name, "some-name"))));

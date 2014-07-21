@@ -37,8 +37,9 @@ public class BookControllerTest extends TestSetup{
 
 
   @Before
-  public void setUp(){
+  public void setUp() throws Exception {
     this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+    clearContent();
   }
 
   @Test

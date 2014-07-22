@@ -1,7 +1,7 @@
 package com.prateekj.controllers;
 
-import com.prateekj.models.Author;
-import com.prateekj.services.AuthorService;
+import com.prateekj.models.Publisher;
+import com.prateekj.services.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,15 +13,15 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-@RequestMapping("/author")
-public class AuthorController {
+@RequestMapping("/publisher")
+public class PublisherController {
 
   @Autowired
-  private AuthorService authorService;
+  private PublisherService publisherService;
 
   @RequestMapping(value = "/all", method = GET)
-  public ResponseEntity<List<Author>> addBook(){
-    List<Author> allAuthors = authorService.getAllAuthors();
-    return new ResponseEntity<List<Author>>(allAuthors , OK);
+  public ResponseEntity<List<Publisher>> addBook(){
+    List<Publisher> allPublisher = publisherService.getAllPublisher();
+    return new ResponseEntity<List<Publisher>>(allPublisher , OK);
   }
 }

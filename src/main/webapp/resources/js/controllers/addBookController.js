@@ -3,7 +3,7 @@ bookCatalogApp.controller('AddBookController', ["$scope","bookService","authorSe
         var book = {};
         book.title = '';
         book.author = {};
-        book.publisher = {};
+        book.publisher = {id: 33};
         $scope.book = book;
 
         $scope.getAllAuthors = function(){

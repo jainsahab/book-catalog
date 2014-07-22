@@ -9,7 +9,10 @@ div(ng-controller="AddBookController", ng-init="getAllAuthors()")
       td
         b Author:
       td
-        input(type="text", ng-model="book.author.name")
+        //select(name="authors", id="author", ng-model="book.author.id", ng-options="author.name + ' - ' + author.id for author in allAuthors")
+        select(name="authors", id="author", ng-model="book.author.id")
+          option(ng-repeat="author in allAuthors", value="{{author.id}}" )
+            {{author.name + ' - ' + author.id }}
     tr
       td
         b Publisher:

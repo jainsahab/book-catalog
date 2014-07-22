@@ -13,29 +13,28 @@ describe("Author Book Service",function(){
     });
 
     describe("#submitBook", function() {
-        it('should get all the authors', function() {
+        it('should get all the authors for the first time', function() {
             var authors = [{id:1 , name:'Prayas'}, {id:2 , name:'Prateek'}];
 
             httpBackend.when('GET', '/book-catalog/author/all').respond(200, authors);
 
-            authorService.getAll();
+            var promise = authorService.getAll();
 
             httpBackend.flush();
-            expect(authorService.allAuthors.length).toBe(2);
+            promise.then(function(data){
+                expect(data.length).toBe(2)
+            });
         });
 
-//    it('should callback failure if request fails', function() {
-//        httpBackend.when('POST', '/book-catalog/book/add').respond(500)
-//        var book = {};
-//        var onSuccess = jasmine.createSpy();
-//        var onFailure = jasmine.createSpy();
-//
-//        authorService.submitBook(book, onSuccess, onFailure)
-//        httpBackend.flush();
-//        expect(onSuccess).not.toHaveBeenCalled();
-//        expect(onFailure).toHaveBeenCalled();
-//    });
-    });
-//
+        it('should get all the authors as they have already cached', function() {
+            authorService.allAuthors = [{id:1 , name:'Prayas'}, {id:2 , name:'Prateek'}];
 
+            var promise = authorService.getAll();
+
+            promise.then(function(data){
+                expect(data.length).toBe(2)
+            });
+        });
+
+    });
 })

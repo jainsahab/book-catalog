@@ -44,8 +44,8 @@ public class BookControllerTest extends TestSetup{
 
   @Test
   public void shouldSaveTheBook() throws Exception{
-    Author someAuthor = make(a(Author, with(name, "author-name")));
-    Publisher somePublisher = make(a(Publisher, with(PublisherMaker.name, "publisher-name")));
+    Author someAuthor = authorRepository.save(make(a(Author, with(name, "author-name"))));
+    Publisher somePublisher = publisherRepository.save(make(a(Publisher, with(PublisherMaker.name, "publisher-name"))));
     Book bookToBeSaved = make(a(Book, with(title, "book-title"),
         with(author, someAuthor),
         with(publisher, somePublisher)));

@@ -1,4 +1,4 @@
-bookCatalogApp.service('authorService', ["$resource", function($resource){
+bookCatalogApp.service('authorService', ["$resource", "$q", function($resource, $q){
 
     var Author =$resource('/book-catalog/author/all',{},{
         getAll : { method: 'GET', isArray: true}
@@ -11,7 +11,15 @@ bookCatalogApp.service('authorService', ["$resource", function($resource){
     };
 
     authorService.getAll = function(){
-        Author.getAll({}, this.assignAuthors);
+        if (authorService.allAuthors)
+            return {then: function(callback){callback(authorService.allAuthors)}}
+
+        var deferred = $q.defer();
+        Author.getAll(function(data){
+            deferred.resolve(data);
+            authorService.assignAuthors(data);
+        });
+        return deferred.promise;
     };
 
     return authorService;

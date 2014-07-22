@@ -7,13 +7,17 @@ bookCatalogApp.controller('AddBookController', ["$scope","bookService","authorSe
         $scope.book = book;
 
         $scope.getAllAuthors = function(){
-            authorService.getAll();
-        }
+            authorService.getAll().then(assignAuthors);
+        };
 
         $scope.submitBook = function(){
             var success = function(){console.log("chal gaya re")};
             var failure = function(){console.log("nahi chala re")};
             bookService.submitBook(this.book, success, failure);
+        }
+
+        var assignAuthors = function(data){
+            $scope.allAuthors = data;
         }
 
 }]);

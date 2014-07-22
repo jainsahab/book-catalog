@@ -29,11 +29,14 @@ describe("Add Book Controller", function(){
 
     describe("#getAllAuthors", function() {
         it('should call service method', function() {
-            spyOn(this.authorService,'getAll');
+            var authors = [{id: 1, name: 'Prateek'}];
+            spyOn(this.authorService,'getAll').andReturn({ then: function(callback){
+                 callback(authors);
+            }});
 
             this.scope.getAllAuthors();
 
-            expect(this.authorService.getAll).toHaveBeenCalled();
+            expect(this.scope.allAuthors).toEqual(authors);
         });
     });
 });

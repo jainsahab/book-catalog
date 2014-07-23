@@ -1,4 +1,4 @@
-div(ng-controller="AddBookController", ng-init="getAllAuthors()")
+div(ng-controller="AddBookController", ng-init="getAuthorsAndPublishers()")
   table
     tr
       td
@@ -9,7 +9,6 @@ div(ng-controller="AddBookController", ng-init="getAllAuthors()")
       td
         b Author:
       td
-        //select(name="authors", id="author", ng-model="book.author.id", ng-options="author.name + ' - ' + author.id for author in allAuthors")
         select(name="authors", id="author", ng-model="book.author.id")
           option(ng-repeat="author in allAuthors", value="{{author.id}}" )
             {{author.name + ' - ' + author.id }}
@@ -17,7 +16,9 @@ div(ng-controller="AddBookController", ng-init="getAllAuthors()")
       td
         b Publisher:
       td
-        input(type="text", ng-model="book.publisher.name")
+        select(name="publishers", id="publisher", ng-model="book.publisher.id")
+          option(ng-repeat="publisher in allPublishers", value="{{publisher.id}}" )
+            {{publisher.name + ' - ' + publisher.id }}
     tr
       td
         input(type="button", ng-click="submitBook()", value="Save")

@@ -1,5 +1,5 @@
-beforeEach(module("bookCatalogApp"));
 describe("Add Book Controller", function(){
+    beforeEach(module("bookCatalogApp"));
     beforeEach(inject(function($controller, $rootScope, bookService, authorService) {
         this.scope = $rootScope.$new();
         this.bookService = bookService;
@@ -10,10 +10,6 @@ describe("Add Book Controller", function(){
         });
     }));
 
-    afterEach(function() {
-        httpBackend.verifyNoOutstandingExpectation();
-        httpBackend.verifyNoOutstandingRequest();
-    });
 
     describe("#submitBook", function() {
         it('should call service method', function() {
@@ -23,7 +19,7 @@ describe("Add Book Controller", function(){
 
             this.scope.submitBook();
 
-            expect(bookService.submitBook).toHaveBeenCalledWith(this.scope.book, jasmine.any(Function), jasmine.any(Function));
+            expect(this.bookService.submitBook).toHaveBeenCalledWith(this.scope.book, jasmine.any(Function), jasmine.any(Function));
         });
     });
 

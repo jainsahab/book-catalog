@@ -1,10 +1,11 @@
-beforeEach(module("bookCatalogApp"));
-
 describe("Author Book Service",function(){
+    beforeEach(module("bookCatalogApp"));
     var authorService;
+    var httpBackend;
 
     beforeEach(inject(function($injector) {
         authorService = $injector.get('authorService');
+        httpBackend = $injector.get('$httpBackend');
     }));
 
     afterEach(function() {

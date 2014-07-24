@@ -17,10 +17,12 @@ module.exports = function(config) {
     files: [
         'src/main/webapp/resources/js/angular.min.js',
         'src/main/webapp/resources/js/angular-resource.min.js',
+        'src/main/webapp/resources/js/angular-route.min.js',
         'src/main/webapp/resources/js/angular-mocks.js',
         'src/main/webapp/resources/js/app.js',
         'src/main/webapp/resources/js/controllers/*.js',
         'src/main/webapp/resources/js/services/*.js',
+        'src/main/webapp/resources/js/routes/*.js',
       'src/test/client/**/*.js'
     ],
 

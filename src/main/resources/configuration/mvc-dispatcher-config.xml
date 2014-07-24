@@ -17,6 +17,7 @@
   <mvc:annotation-driven/>
 
   <mvc:resources mapping="/js/**" location="/resources/js/" cache-period="31556926"/>
+  <mvc:resources mapping="/templates/**" location="/resources/templates/" cache-period="31556926"/>
 
   <bean id="templateLoader" class="de.neuland.jade4j.spring.template.SpringTemplateLoader">
     <property name="basePath" value="/WEB-INF/pages/"/>

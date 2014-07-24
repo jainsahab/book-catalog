@@ -1,1 +1,1 @@
-var bookCatalogApp = angular.module('bookCatalogApp', ['ngResource']);
+var bookCatalogApp = angular.module('bookCatalogApp', ['ngResource','ngRoute']);

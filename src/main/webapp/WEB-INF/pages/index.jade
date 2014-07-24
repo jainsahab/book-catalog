@@ -4,7 +4,10 @@ html(ng-app="bookCatalogApp")
     title Book Catalog
     script(src = "js/angular.min.js", type="text/javascript")
     script(src = "js/angular-resource.min.js", type="text/javascript")
+    script(src = "js/angular-route.min.js", type="text/javascript")
     script(src = "js/app.js", type="text/javascript")
+
+    script(src = "js/routes/routes.js", type="text/javascript")
 
     script(src = "js/services/bookService.js", type="text/javascript")
     script(src = "js/services/authorService.js", type="text/javascript")
@@ -12,4 +15,5 @@ html(ng-app="bookCatalogApp")
 
     script(src = "js/controllers/addBookController.js", type="text/javascript")
   body
-    include ../../resources/templates/add_book
+      a(href="#/add_book") Add Book Template
+      div(ng-view)

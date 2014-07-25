@@ -13,7 +13,7 @@ describe("Author Book Service",function(){
         httpBackend.verifyNoOutstandingRequest();
     });
 
-    describe("#submitBook", function() {
+    describe("#getAll", function() {
         it('should get all the authors for the first time', function() {
             var authors = [{id:1 , name:'Prayas'}, {id:2 , name:'Prateek'}];
 
@@ -38,4 +38,23 @@ describe("Author Book Service",function(){
         });
 
     });
+
+    describe("#saveAuthor", function() {
+        it('should get all the authors for the first time', function() {
+            var unsavedAuthor = {name: 'Prateek'};
+            var onSuccess = jasmine.createSpy();
+            var onFailure = jasmine.createSpy();
+
+            var savedAuthor = {id: 1, name: 'Prateek'};
+
+            httpBackend.when('PUT', '/book-catalog/author/save').respond(201, savedAuthor);
+
+            authorService.saveUser(unsavedAuthor, onSuccess, onFailure);
+
+            httpBackend.flush();
+            expect(onSuccess).toHaveBeenCalled();
+            expect(onFailure).not.toHaveBeenCalled();
+        });
+    });
+
 })

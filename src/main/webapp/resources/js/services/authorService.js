@@ -1,7 +1,8 @@
 bookCatalogApp.service('authorService', ["$resource", "$q", function($resource, $q){
 
-    var Author =$resource('/book-catalog/author/all',{},{
-        getAll : { method: 'GET', isArray: true}
+    var Author =$resource('/book-catalog/author',{},{
+        getAll : { method: 'GET', isArray: true, url: '/book-catalog/author/all'},
+        save : { method: 'PUT', url: '/book-catalog/author/save'}
     });
 
     var authorService = {};
@@ -20,6 +21,10 @@ bookCatalogApp.service('authorService', ["$resource", "$q", function($resource, 
             authorService.assignAuthors(data);
         });
         return deferred.promise;
+    };
+
+    authorService.saveUser = function(author, success, failure){
+        Author.save(author, success, failure);
     };
 
     return authorService;

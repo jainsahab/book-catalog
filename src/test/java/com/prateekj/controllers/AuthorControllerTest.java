@@ -1,5 +1,6 @@
 package com.prateekj.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prateekj.models.Author;
 import com.prateekj.setup.TestSetup;
 import org.junit.Before;
@@ -12,12 +13,16 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static com.natpryce.makeiteasy.MakeItEasy.a;
 import static com.natpryce.makeiteasy.MakeItEasy.make;
+import static com.natpryce.makeiteasy.MakeItEasy.with;
 import static com.prateekj.makers.AuthorMaker.Author;
+import static com.prateekj.makers.AuthorMaker.name;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -48,5 +53,17 @@ public class AuthorControllerTest extends TestSetup{
         .andExpect(jsonPath("$.[*].name[*]").value(hasItems(author1.getName(), author2.getName())));
   }
 
+  @Test
+  public void shouldSaveTheAuthors() throws Exception{
+    String authorName = "Prateek";
+    Author author = make(a(Author, with(name, authorName)));
+    authorRepository.save(asList(author));
 
+    mockMvc.perform(put("/author/save")
+        .content(new ObjectMapper().writeValueAsString(author))
+        .contentType(APPLICATION_JSON))
+        .andExpect(status().isCreated())
+        .andExpect(jsonPath("$.name").value(author.getName()))
+        .andExpect(jsonPath("$.id").value(notNullValue()));
+  }
 }
